@@ -3,17 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insub</title>
+    <title>Document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        function getWords() {
+            $.ajax({
+                url: '/words',
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(data) {
+                    var html = '';
+                    $.each(data, function() {
+                        html += '<tr>';
+                        html += '<td>' + this['Id'] + '</td>';
+                        html += '<td>' + this['Name'] + '</td>';
+                        html += '<td>' + this['Mean'] + '</td>';
+                        html += '</tr>'
+                    });
+                    $('#wordList').html(html);
+                },error: function() {
+                    alert("error");
+                }
+            });
+        }
+
+        function addWord() {
+            if(!$.trim($('#Name').val())) {
+                alert('공백')
+            }
+            if(!$.trim($('#Mean').val())) {
+                alert('공백')
+            }
+
+            var data = JSON.stringify({Id:0, Name:$('#Name').val(), Mean:$('#Mean').val()});
+            $.ajax({
+                url: '/word',
+                type: 'POST',
+                data: data,
+                dataType: 'JSON',
+                success:function(data) {
+                    alert('등록')
+                    getWords();
+                },error:function() {
+                    alert('에러')
+                    getWords();
+                }
+            });
+            
+        }
+    </script>
 </head>
-<body>
-    <form method="POST" action="/words">
-        <button>Let's see words</button>
+<body onload="getWords()">
+    <form name="ajaxForm" id="ajaxForm" method="POST" onsubmit="return false;">
+        <label for="Name">Name</label>
+        <input type="text" name="Name" id="Name">
+        <br>
+        <label for="Mean">Mean</label>
+        <input type="text" name="Mean" id="Mean">
+        <br>
+        <button onclick="addWord()">Add</button>
     </form>
 
-    <form method="POST" action="/word">
-        word : <input type="text" name="Name"><br>
-        mean : <input type="text" name="Mean">
-        <button>INSERT WORD</button>
-    </form>
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Mean</th>
+            </tr>
+        </thead>
+        <tbody id="wordList">
+
+        </tbody>
+    </table>
 </body>
 </html>
