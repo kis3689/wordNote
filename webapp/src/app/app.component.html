@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <span class="tool-bar">Word Data Base</span>
+</mat-toolbar>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef [style.width.%]="40">Name</th>
+    <td mat-cell *matCellDef="let word">{{word.Name}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Mean">
+    <th mat-header-cell *matHeaderCellDef [style.width.%]="60">Mean</th>
+    <td mat-cell *matCellDef="let word">{{word.Mean}}</td>
+    <td mat-footer-cell *matFooterCellDef>
+      <button mat-button class="add-button" (click)="openNewDialog()">Add</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let word; columns: displayedColumns;" (click)="openEditDialog(word)"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+</table>

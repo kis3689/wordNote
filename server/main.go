@@ -37,21 +37,23 @@ func checkError(err error) {
 
 func main() {
 	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/", homePage)
-	myRouter.HandleFunc("/word", insertWord).Methods("POST")
-	myRouter.HandleFunc("/word/{id}", returnWord)
-	myRouter.HandleFunc("/words", returnWords)
+	//myRouter.HandleFunc("/", homePage)
+	//myRouter.HandleFunc("/word", insertWord).Methods("POST")
+	//myRouter.HandleFunc("/word/{id}", returnWord)
+	myRouter.HandleFunc("/words", returnWords).Methods("GET")
+	myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/webapp/")))
 	//175.125.246.138
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("views/index.html")
+	t, err := template.ParseFiles("index.html")
 	checkError(err)
 	t.Execute(w, nil)
 }
 
 func returnWords(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var words []Word = getWords()
 	json.NewEncoder(w).Encode(words)
 }
