@@ -41,6 +41,9 @@ func main() {
 	//myRouter.HandleFunc("/word", insertWord).Methods("POST")
 	//myRouter.HandleFunc("/word/{id}", returnWord)
 	myRouter.HandleFunc("/words", returnWords).Methods("GET")
+	myRouter.HandleFunc("/words", insertWord).Methods("POST")
+	myRouter.HandleFunc("/words/{id}", returnWords).Methods("PUT")
+	myRouter.HandleFunc("/words/{id}", returnWords).Methods("DELETE")
 	myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/webapp/")))
 	//175.125.246.138
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
@@ -52,16 +55,16 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, nil)
 }
 
-func returnWords(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	var words []Word = getWords()
-	json.NewEncoder(w).Encode(words)
-}
-
 func returnWord(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
 	json.NewEncoder(w).Encode(getWord(key))
+}
+
+func returnWords(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var words []Word = getWords()
+	json.NewEncoder(w).Encode(words)
 }
 
 func insertWord(w http.ResponseWriter, r *http.Request) {
@@ -75,6 +78,18 @@ func insertWord(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "id:%d, name:%s, mean:%s", w1.Id, w1.Name, w1.Mean)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+//DB
 func addWord(w1 Word) string {
 	dbInfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASS, DB_NAME)
 	db, err := sql.Open("postgres", dbInfo)
