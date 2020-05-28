@@ -14,7 +14,7 @@ import { WordnoteService } from '../wordnote.service';
 export class WordDialogComponent implements OnDestroy {
   controlGroup: FormGroup;
   errorStateMatcher = new InstantErrorStateMatcher();
-  addSubscription: Subscription;
+  insertSubscription: Subscription;
   updateSubscription: Subscription;
   deleteSubscription: Subscription;
 
@@ -33,7 +33,7 @@ export class WordDialogComponent implements OnDestroy {
     this.word.Name = this.formValue('name');
     this.word.Mean = this.formValue('mean');
     if (!this.word.Id) {
-      this.addSubscription = this.service.add(this.word)
+      this.insertSubscription = this.service.add(this.word)
         .subscribe(this.dialogRef.close);
     } else {
       this.updateSubscription = this.service.update(this.word)
@@ -51,8 +51,8 @@ export class WordDialogComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.addSubscription) {
-      this.addSubscription.unsubscribe();
+    if (this.insertSubscription) {
+      this.insertSubscription.unsubscribe();
     }
     if (this.updateSubscription) {
       this.updateSubscription.unsubscribe();

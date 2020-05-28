@@ -13,13 +13,17 @@ import {MatInputModule} from "@angular/material/input";
 import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { WordDialogComponent } from './wordnote/word-dialog/word-dialog.component';
-
-
+import { WordnoteService } from './wordnote/wordnote.service';
+import { UsersComponent } from './users/users.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatSelectModule } from '@angular/material/select'
+import { MatDividerModule } from '@angular/material/divider'
 
 @NgModule({
   declarations: [
     WordnoteComponent,
     WordDialogComponent,
+    UsersComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,17 @@ import { WordDialogComponent } from './wordnote/word-dialog/word-dialog.componen
     FormsModule,
     HttpClientModule,
     MatToolbarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatDividerModule
+
+  ],
+  providers: [
+    WordnoteService
+  ],
+  entryComponents: [
+    WordDialogComponent
   ]
 })
 export class ModulesModule { }

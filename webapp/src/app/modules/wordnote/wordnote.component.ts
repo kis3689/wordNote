@@ -23,7 +23,7 @@ export class WordnoteComponent implements OnInit, OnDestroy {
   }
 
   openEditDialog(wd: Word) {
-    alert('edit');
+    this.openDialog(new Word(wd.Id, wd.Name, wd.Mean));
   }
 
   private openDialog(wd: Word): void {
