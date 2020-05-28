@@ -12,12 +12,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { WordDialogComponent } from './wordnote/word-dialog/word-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     WordnoteComponent,
+    WordDialogComponent,
   ],
   imports: [
     CommonModule,

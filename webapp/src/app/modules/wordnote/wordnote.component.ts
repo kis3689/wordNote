@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { WordnoteService } from '../wordnote.service';
-import { Word } from '../word';
+import { WordnoteService } from './wordnote.service';
+import { Word } from './word';
 
 @Component({
   selector: 'app-wordnote',

@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {WordService} from "../word.service";
-import {Word} from "../word";
-import {Subscription} from 'rxjs';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {InstantErrorStateMatcher} from "./instant-error-state.matcher";
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { InstantErrorStateMatcher } from './instant-error-state.matcher';
+import { Subscription } from 'rxjs';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Word } from '../word';
+import { WordnoteService } from '../wordnote.service';
 
 @Component({
   selector: 'app-word-dialog',
@@ -21,7 +21,7 @@ export class WordDialogComponent implements OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public word: Word,
     public dialogRef: MatDialogRef<WordDialogComponent>,
-    public service: WordService
+    public service: WordnoteService
   ) { 
     this.controlGroup = new FormGroup({
       name: new FormControl(word.Name, Validators.required),
