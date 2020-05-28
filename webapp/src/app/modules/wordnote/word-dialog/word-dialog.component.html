@@ -1,10 +1,10 @@
 <form class="mat-dialog-content" [formGroup]="controlGroup">
-    <h1 mat-dialog-title>{{ word.Id ? 'Edit' : 'Add' }} Word</h1>
+    <h1 mat-dialog-title i18n>{{ word.Id ? 'Edit' : 'Add' }} Word</h1>
     <div mat-dialog-content>
       <mat-form-field>
         <input matInput placeholder="Name" formControlName="name"
                [errorStateMatcher]="errorStateMatcher" required>
-        <mat-error *ngIf="hasError('name', 'required')">
+        <mat-error *ngIf="hasError('name', 'required')" i18n>
           Name is required
         </mat-error>
       </mat-form-field>
@@ -12,17 +12,17 @@
       <mat-form-field>
         <input matInput placeholder="Mean" formControlName="mean"
                [errorStateMatcher]="errorStateMatcher" required>
-        <mat-error *ngIf="hasError('mean', 'required')">
+        <mat-error *ngIf="hasError('mean', 'required')"i 18n>
           Mean is required
         </mat-error>
       </mat-form-field>
     </div>
     <mat-dialog-actions>
-      <button mat-button *ngIf="word.Id" [mat-dialog-close] (click)="delete()">
+      <button mat-button *ngIf="word.Id" [mat-dialog-close] (click)="delete()" i18n>
         Delete
       </button>
       <button mat-button [mat-dialog-close] (click)="save()"
-              [disabled]="!controlGroup.valid">Save</button>
+              [disabled]="!controlGroup.valid" i18n>Save</button>
     </mat-dialog-actions>
   </form>
   

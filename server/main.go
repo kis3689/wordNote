@@ -40,6 +40,8 @@ func main() {
 	myRouter.HandleFunc("/words/{id}", updateWord).Methods("PUT")
 	myRouter.HandleFunc("/words/{id}", deleteWord).Methods("DELETE")
 	myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/webapp/")))
+	//myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/translate-id/")))
+	//myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/translate-ko/")))
 	//175.125.246.138
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
 }

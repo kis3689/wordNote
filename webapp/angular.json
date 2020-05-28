@@ -61,6 +61,22 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "id": {
+              "aot": true,
+              "outputPath": "dist/translate-id",
+              "i18nFile": "src/locale/messages.id.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "id",
+              "i18nMissingTranslation": "error"
+            },
+            "ko": {
+              "aot": true,
+              "outputPath": "dist/translate-ko",
+              "i18nFile": "src/locale/messages.ko.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ko",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -72,6 +88,12 @@
           "configurations": {
             "production": {
               "browserTarget": "webapp:build:production"
+            },
+            "id": {
+              "browserTarget": "webapp:build:id"
+            },
+            "ko": {
+              "browserTarget": "webapp:build:ko"
             }
           }
         },

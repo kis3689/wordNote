@@ -4,7 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:id": "ng serve --configuration=id",
+    "start:ko": "ng serve --configuration=ko",
     "build": "ng build",
+    "build:id": "ng build --configuration=id",
+    "build:ko": "ng build --configuration=ko",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
