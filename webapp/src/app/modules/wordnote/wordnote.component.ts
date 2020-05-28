@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { WordnoteService } from './wordnote.service';
 import { Word } from './word';
+import { WordDialogComponent } from './word-dialog/word-dialog.component';
 
 @Component({
   selector: 'app-wordnote',
@@ -18,11 +19,17 @@ export class WordnoteComponent implements OnInit, OnDestroy {
   constructor(public dialog: MatDialog, public service: WordnoteService) { }
 
   openNewDialog() {
-    alert('new')
+    this.openDialog(new Word());
   }
 
   openEditDialog(wd: Word) {
-    alert('edit')
+    alert('edit');
+  }
+
+  private openDialog(wd: Word): void {
+    this.dialogSubscription = this.dialog
+      .open(WordDialogComponent, {data: wd, minWidth: '30%'})
+      .afterClosed().subscribe(() => this.loadStudentsList());
   }
 
   private loadStudentsList(): void {
@@ -35,7 +42,10 @@ export class WordnoteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.getAllSubscription.unsubscribe();
+    if (this.dialogSubscription) {
+      this.dialogSubscription.unsubscribe();
+    }
   }
 
 }

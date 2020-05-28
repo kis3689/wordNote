@@ -10,10 +10,10 @@
       </mat-form-field>
       <br/>
       <mat-form-field>
-        <input matInput type="number" placeholder="Age" formControlName="age"
+        <input matInput placeholder="Mean" formControlName="mean"
                [errorStateMatcher]="errorStateMatcher" required>
-        <mat-error *ngIf="hasError('age', 'required')">
-          Age is required
+        <mat-error *ngIf="hasError('mean', 'required')">
+          Mean is required
         </mat-error>
       </mat-form-field>
     </div>
