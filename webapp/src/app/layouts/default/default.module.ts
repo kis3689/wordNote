@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { ModulesModule } from 'src/app/modules/modules.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
     CommonModule,
     RouterModule,
     SharedModule,
+    ModulesModule,
     MatSidenavModule,
     MatDividerModule,
     FlexLayoutModule,
