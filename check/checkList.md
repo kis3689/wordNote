@@ -24,3 +24,4 @@
     4. main.go 코드 정리
     5. favicon이 적용 안되는 이유 찾기
     6. wordnote - add 시 데이터 갱신 확인
+    7. wordnote - 페이징처리

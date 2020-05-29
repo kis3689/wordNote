@@ -39,12 +39,14 @@ func main() {
 	myRouter.HandleFunc("/words", insertWord).Methods("POST")
 	myRouter.HandleFunc("/words/{id}", updateWord).Methods("PUT")
 	myRouter.HandleFunc("/words/{id}", deleteWord).Methods("DELETE")
-	//기본 영어페이지
-	myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/webapp/")))
+	
 	//인도네시아어
 	//myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/translate-id/")))
 	//한국어
 	//myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/translate-ko/")))
+
+	//기본 영어페이지
+	myRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../webapp/dist/webapp/")))
 	//집 공유기 외부접속 175.125.246.138
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
 }
